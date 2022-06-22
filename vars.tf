@@ -18,7 +18,7 @@ variable "pool_name" {
   description = "XEN pool name"
 }
 
-variable "pvt_key" {
+variable "ssh_pvt_key" {
   description = "SSH Key to use"
 }
 

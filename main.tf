@@ -22,7 +22,7 @@ provider "xenorchestra" {
 
 # Get the generated public key
 data "local_file" "ssh_pub_key" {
-    filename = "${var.pvt_key}.pub"
+    filename = "${var.ssh_pvt_key}.pub"
 }
 
 data "xenorchestra_network" "net" {
@@ -37,7 +37,7 @@ resource "xenorchestra_cloud_config" "workers" {
   template = templatefile("./templates/cloud_config.tftpl", {
     hostname = "k3s-worker-${count.index}"
     domain   = "hansperera.com"
-    sshkey   = data.local_file.ssh_pvt_key.content
+    sshkey   = data.local_file.ssh_pub_key.content
   })
 }
 
@@ -47,7 +47,7 @@ resource "xenorchestra_cloud_config" "masters" {
   template = templatefile("./templates/cloud_config.tftpl", {
     hostname = "k3s-master-${count.index}"
     domain   = "hansperera.com"
-    sshkey   = data.local_file.ssh_pvt_key.content
+    sshkey   = data.local_file.ssh_pub_key.content
   })
 }
 
@@ -158,8 +158,8 @@ resource "xenorchestra_vm" "xen_vm_worker" {
 data "template_file" "k8s" {
   template = file("./templates/k8s.tpl")
   vars = {
-    k3s_master_ip = "${join("\n", [for instance in xenorchestra_vm.xen_vm_master : join("", [instance.ipv4_addresses[0], " ansible_ssh_private_key_file=", var.pvt_key])])}"
-    k3s_node_ip   = "${join("\n", [for instance in xenorchestra_vm.xen_vm_worker : join("", [instance.ipv4_addresses[0], " ansible_ssh_private_key_file=", var.pvt_key])])}"
+    k3s_master_ip = "${join("\n", [for instance in xenorchestra_vm.xen_vm_master : join("", [instance.ipv4_addresses[0], " ansible_ssh_private_key_file=", var.ssh_pvt_key])])}"
+    k3s_node_ip   = "${join("\n", [for instance in xenorchestra_vm.xen_vm_worker : join("", [instance.ipv4_addresses[0], " ansible_ssh_private_key_file=", var.ssh_pvt_key])])}"
   }
 }
 

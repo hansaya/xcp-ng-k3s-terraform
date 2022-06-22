@@ -5,7 +5,7 @@ pool_name = "home"
 
 tamplate_vm_name = "cloudinit-template"
 storage_name = "NVME"
-pvt_key = "/home/bob/.ssh/k3scluster"
+ssh_pvt_key = "/home/bob/.ssh/k3scluster"
 start_on_boot = true
 number_of_cores = 10
 
