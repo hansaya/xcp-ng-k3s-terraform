@@ -1,0 +1,6 @@
+#cloud-config
+hostname: ${hostname}
+fqdn: ${hostname}.${domain}
+package_upgrade: true
+ssh_authorized_keys:
+  - ${sshkey}

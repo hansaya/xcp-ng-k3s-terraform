@@ -1,0 +1,12 @@
+#network:
+version: 1
+config:
+  - type: physical
+    name: eth0
+    mtu: 9000
+    subnets:
+      - type: static
+        address: ${ip}
+        gateway: ${gateway}
+        dns_nameservers:
+          - ${dns}
