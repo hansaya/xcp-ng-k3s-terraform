@@ -25,3 +25,4 @@ master_ip_start = 180
 worker_ip_start = 190
 default_gateway = "192.168.1.1"
 dns = "192.168.1.1"
+network_name = "Pool-wide network associated with eth0"

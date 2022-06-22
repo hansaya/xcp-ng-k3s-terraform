@@ -52,7 +52,7 @@ Before getting started, make sure to complete this checklist
 ### Install terraform
 Follow https://www.terraform.io/downloads
 ### Modify the config.auto.tfvars.sample to fit your setup
-Rename the `config.auto.tfvars.sample` to `config.auto.tfvars`s and fill the blanks. Otherwise pass in the variables through CLI
+Rename the `config.auto.tfvars.sample` to `config.auto.tfvars` and fill the blanks. Otherwise pass in the variables through CLI. Look at `vars.tf` file for variable descriptions.
 ```
 mv config.auto.tfvars.sample config.auto.tfvars
 ```

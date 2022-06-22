@@ -26,8 +26,8 @@ data "local_file" "ssh_pub_key" {
 }
 
 data "xenorchestra_network" "net" {
-  name_label = "Pool-wide network associated with eth0"
-  pool_id = data.xenorchestra_pool.pool.id
+  name_label = var.network_name
+  pool_id    = data.xenorchestra_pool.pool.id
   # vlan = 2
 }
 
@@ -83,7 +83,7 @@ data "xenorchestra_pool" "pool" {
 }
 
 data "xenorchestra_template" "template" {
-    name_label = "Ubuntu 22.04 template"
+    name_label = var.tamplate_name
 }
 
 resource "xenorchestra_vm" "xen_vm_master" {

@@ -67,7 +67,7 @@ variable "number_of_cores" {
   default = 4
 }
 
-variable "tamplate_vm_name" {
+variable "tamplate_name" {
   description = "Name of the cloud-init template"
 }
 
@@ -99,4 +99,9 @@ variable "default_gateway" {
 variable "dns" {
   description = "Name Server"
   default = "192.168.1.1"
+}
+
+variable "network_name" {
+  description = "Network Name"
+  default = "Pool-wide network associated with eth0"
 }
