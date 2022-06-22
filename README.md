@@ -42,8 +42,6 @@ sudo shutdown now
 ```
 ssh-keygen -t rsa -b 4096 -C "admin@example.com" -f ~/.ssh/k3scluster
 ```
-## Install terraform
-
 ## Run terraform
 Before getting started, make sure to complete this checklist
 * Test your template by manually creating a VM using the template.
@@ -51,7 +49,13 @@ Before getting started, make sure to complete this checklist
 * Dedicate a static sequential ip range for these VM(s).
 * Figure out the storage medium for K8S/K3S cluster.
 * Xen Orchestra running and accessible.
-### Modify the sample-config.auto.tfvars to fit your setup
+### Install terraform
+Follow https://www.terraform.io/downloads
+### Modify the config.auto.tfvars.sample to fit your setup
+Rename the `config.auto.tfvars.sample` to `config.auto.tfvars`s and fill the blanks. Otherwise pass in the variables through CLI
+```
+mv config.auto.tfvars.sample config.auto.tfvars
+```
 ### Deploy
 ```
 terraform init
@@ -59,3 +63,4 @@ terraform plan
 terraform apply
 ```
 ### Use inventory files for Ansible
+You can use the auto generated host file for Ansible. To install k3s, I recommend the great work by https://github.com/itwars/k3s-ansible or https://github.com/212850a/k3s-ansible. If you are experimenting alot, create a sym link between inventory/hosts.ini and k3s-ansible/inventory/my-cluster/hosts.ini and set ansible_user in group_vars/all.yml.
